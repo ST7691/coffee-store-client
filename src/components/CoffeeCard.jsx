@@ -4,8 +4,8 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
-  const { _id, Photo, name, Price, quantity ,} = coffee;
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
+  const { _id, Photo, name, Price, quantity } = coffee;
   // --------------------handel delet button-----------------------
   const handleDelete = (_id) => {
     console.log("click delete id : ", _id);
@@ -22,9 +22,12 @@ const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
       // console.log(result.isConfirmed);
       if (result.isConfirmed) {
         //   --------------start delete coffee----------------------
-        fetch(`http://localhost:3000/coffees/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-server-ce8t4z2kr-st7691s-projects.vercel.app/coffees/${_id}`,
+          {
+            method: "DELETE",
+          },
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -35,9 +38,9 @@ const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
                 text: "Your Coffee  has been deleted.",
                 icon: "success",
               });
-                // -----------remove coffee ui ----------------
-                const remaimingCoffee = coffees.filter(cof => cof._id !== _id)
-                setCoffees(remaimingCoffee)
+              // -----------remove coffee ui ----------------
+              const remaimingCoffee = coffees.filter((cof) => cof._id !== _id);
+              setCoffees(remaimingCoffee);
             }
           });
       }
@@ -68,7 +71,7 @@ const CoffeeCard = ({ coffee,coffees,setCoffees }) => {
               onClick={() => handleDelete(_id)}
               className="btn join-item  bg-[#EA4744]"
             >
-             Delete
+              Delete
             </button>
           </div>
         </div>

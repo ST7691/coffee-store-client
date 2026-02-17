@@ -12,13 +12,16 @@ const UpdateCoffee = () => {
     const updateCoffee = Object.fromEntries(formData.entries());
     console.log(updateCoffee);
     //  -----------------------------update data---------------------------------
-    fetch(`http://localhost:3000/coffees/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
+    fetch(
+      `https://coffee-store-server-ce8t4z2kr-st7691s-projects.vercel.app/coffees/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateCoffee),
       },
-      body: JSON.stringify(updateCoffee),
-    })
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {

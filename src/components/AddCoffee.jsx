@@ -2,36 +2,39 @@ import React from "react";
 import Swal from "sweetalert2";
 
 const AddCoffee = () => {
-    // ----------------handleadd coffe------------------
-    const handleCoffeeAdd = e => {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        const newData = Object.fromEntries(formData.entries())
-        console.log(newData)
+  // ----------------handleadd coffe------------------
+  const handleCoffeeAdd = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const newData = Object.fromEntries(formData.entries());
+    console.log(newData);
 
-        // console.log('hello add')
-        // --------------post data coffee--------------
-        fetch("http://localhost:3000/coffees", {
-            method: 'POST',
-            headers: {
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(newData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                  console.log("after adding coffee", data);  
-                
-                Swal.fire({
-                  position: "top",
-                  icon: "success",
-                  title: "Add Coffee successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-            });
-    }
+    // console.log('hello add')
+    // --------------post data coffee--------------
+    fetch(
+      "https://coffee-store-server-ce8t4z2kr-st7691s-projects.vercel.app/coffees",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newData),
+      },
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after adding coffee", data);
+
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Add Coffee successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
   return (
     <div className="p-24 bg-[#F4F3F0]">
       <div className="p-12 text-center space-y-10">
